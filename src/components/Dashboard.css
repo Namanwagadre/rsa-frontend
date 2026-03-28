@@ -1,0 +1,325 @@
+/* --- GLOBAL APP STYLES --- */
+* {
+  font-family: 'Poppins', sans-serif; /* Naya Premium Font */
+  box-sizing: border-box;
+}
+
+body {
+  background: #f4f7f6; /* Soft light background */
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft Shadow */
+}
+
+/* --- HEADINGS & TEXT --- */
+h1 {
+  color: #1a1a1a;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+h2 {
+  text-align: center;
+  color: #555;
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.role-text {
+  color: #007bff;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: #e6f2ff;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.status-message {
+  text-align: center;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 15px 0;
+  border-left: 4px solid #007bff;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+  margin: 30px 0;
+}
+
+/* --- CARDS & SECTIONS (Glass/Modern Look) --- */
+.add-vehicle-section, .customer-section, .pending-box, .active-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: transform 0.3s ease;
+}
+
+.add-vehicle-section:hover, .customer-section:hover {
+  transform: translateY(-2px);
+}
+
+.section-title {
+  margin-top: 0;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* --- INPUTS & SELECTS --- */
+.input-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.problem-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s;
+  background-color: #fafbfc;
+  margin-bottom: 15px;
+}
+
+.problem-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  background-color: #fff;
+}
+
+.half-width {
+  width: calc(50% - 7.5px);
+  margin-bottom: 0;
+}
+
+/* --- BUTTONS (Premium Gradients & Hover Effects) --- */
+button {
+  font-family: 'Poppins', sans-serif;
+}
+
+.save-btn, .check-requests-btn, .sos-btn, .accept-btn, .map-btn, .logout-btn {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.save-btn { background: #28a745; color: white; }
+.save-btn:hover { background: #218838; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(40,167,69,0.3); }
+
+.sos-btn { background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white; margin-top: 10px; }
+.sos-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 75, 43, 0.4); }
+
+.check-requests-btn { background: #007bff; color: white; margin-bottom: 25px; }
+.check-requests-btn:hover { background: #0056b3; box-shadow: 0 4px 10px rgba(0,123,255,0.3); transform: translateY(-2px); }
+
+.map-btn { background: #4285F4; color: white; margin-top: 15px; }
+.map-btn:hover { background: #2b65ce; box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3); }
+
+.logout-btn { background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; width: 100%; margin-top: 20px;}
+.logout-btn:hover { background: #dc3545; color: white; }
+
+.full-width { width: 100%; }
+
+/* --- MECHANIC REQUEST CARDS --- */
+.requests-container { display: flex; flex-direction: column; gap: 15px; }
+
+.request-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.new-card { border-left: 6px solid #ff4d4f; }
+.active-card { border-left: 6px solid #28a745; }
+
+.req-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.req-header h4 { margin: 0; font-size: 16px; }
+.text-red { color: #d93025; }
+.text-green { color: #28a745; }
+
+.time-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.red-badge { background-color: #ffe6e6; color: #d93025; }
+.green-badge { background-color: #e6f4ea; color: #1e8e3e; }
+
+.request-card p { margin: 5px 0 15px 0; color: #5f6368; font-size: 14px; }
+
+.empty-text { text-align: center; color: #a0a0a0; font-style: italic; padding: 20px; }
+
+/* --- MOBILE RESPONSIVENESS (Phone ke liye) --- */
+@media (max-width: 600px) {
+  .dashboard-container { margin: 10px; padding: 20px; border-radius: 12px; }
+  .half-width { width: 100%; }
+  h1 { font-size: 24px; }
+}
+
+/* --- PRICING BOX --- */
+.pricing-box {
+  padding: 12px;
+  background-color: #e6f4ea;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  color: #1e8e3e;
+  font-size: 14px;
+  border: 1px solid #c3e6cb;
+}
+
+.pricing-note {
+  font-size: 12px;
+  color: #555;
+  display: block;
+  margin-top: 5px;
+}
+
+/* --- HISTORY SECTION --- */
+.history-section {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-title {
+  color: #333;
+  font-weight: 600;
+}
+
+.history-subtitle {
+  font-size: 13px;
+  color: #777;
+}
+
+.status-completed {
+  color: #1e8e3e;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: #e6f4ea;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* Choti margins ke liye helper */
+.mt-10 {
+  margin-top: 10px;
+}
+
+/* --- TRACKING BOX (CUSTOMER LIVE STATUS) --- */
+.tracking-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #4285F4;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(66, 133, 244, 0.1);
+  text-align: center;
+}
+
+.status-pending-text {
+  color: #d93025;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #ffe6e6;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.status-accepted-text {
+  color: #1e8e3e;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #e6f4ea;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.tracking-note {
+  font-size: 13px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.refresh-btn {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+  background-color: #e2e6ea;
+}

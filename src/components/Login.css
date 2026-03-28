@@ -1,0 +1,35 @@
+.login-container{
+    padding: 20px;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.login-form {
+    display:flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.login-button {
+    padding: 12px;
+    background-color: #28a745;
+    color:white;
+    border:none;
+    border-radius: 5px;
+    cursor:pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover{
+    background-color: #218838;
+}
