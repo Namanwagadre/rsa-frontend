@@ -10,7 +10,7 @@ function Dashboard() {
 
   // States
   const [problem, setProblem] = useState('');
-  const [estimatedPrice, setEstimatedPrice] = useState(''); // Price dikhane ke liye
+  const [estimatedPrice, setEstimatedPrice] = useState(''); 
   const [vehicleId, setVehicleId] = useState(''); 
   const [message, setMessage] = useState('');
   const [vehicles, setVehicles] = useState([]); 
