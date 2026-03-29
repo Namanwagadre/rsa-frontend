@@ -25,13 +25,13 @@ function Dashboard() {
   const [year, setYear] = useState('');
   const [licensePlate, setLicensePlate] = useState('');
 
-
   // Fetch Vehicles
   useEffect(() => {
     const fetchVehicles = async () => {
-      if (role === 'customer') {
+      if (role === 'customer') { 
         try {
-          const response = await fetch('http://127.0.0.1:5000/api/vehicles', {
+          // 👉 FIXED: Localhost ko Live Render link se replace kiya
+          const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/vehicles', {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` }
           });
@@ -45,11 +45,10 @@ function Dashboard() {
     fetchVehicles();
   }, [role, token]);
 
-
   // Status fetch karne ka function
   const fetchCustomerActiveReq = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/requests/customer-active', {
+      const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/customer-active', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -61,7 +60,7 @@ function Dashboard() {
 
   // Page khulte hi fetch karein
   useEffect(() => {
-    if (role === 'customer') {
+    if (role === 'customer') { 
       fetchCustomerActiveReq();
     }
   }, [role, token]);
@@ -69,7 +68,7 @@ function Dashboard() {
   // Fetch History (For both Customer & Mechanic)
   const fetchHistory = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/requests/history', {
+      const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/history', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -87,7 +86,7 @@ function Dashboard() {
   // Fetch Active Requests (Mechanic)
   const fetchActiveRequests = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/requests/my-accepted', {
+      const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/my-accepted', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -110,7 +109,7 @@ function Dashboard() {
       return;
     }
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/vehicles/add', {
+      const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/vehicles/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ make, model, year, licensePlate })
@@ -146,7 +145,7 @@ function Dashboard() {
       const lng = position.coords.longitude;
 
       try {
-        const response = await fetch('http://127.0.0.1:5000/api/requests/create', {
+        const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify({ serviceType: problem, latitude: lat, longitude: lng, vehicleId: vehicleId }),
@@ -170,7 +169,7 @@ function Dashboard() {
   // Accept Request
   const handleAcceptRequest = async (reqId) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/requests/accept', {
+      const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/accept', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ requestId: reqId })
@@ -191,7 +190,7 @@ function Dashboard() {
   // Complete Request
   const handleCompleteRequest = async (reqId) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/requests/complete', {
+      const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ requestId: reqId })
@@ -221,7 +220,7 @@ function Dashboard() {
       {message && <p className="status-message">{message}</p>}
       <hr className="divider" />
 
-      {role === 'customer' && (
+      {role === 'customer' && ( // 👉 FIXED
         <>
           <div className="add-vehicle-section">
             <h3 className="section-title">➕ Add a New Vehicle</h3>
@@ -307,7 +306,7 @@ function Dashboard() {
             <button className="check-requests-btn full-width" onClick={async () => {
               setMessage('⏳ Checking for new requests...');
               try {
-                const response = await fetch('http://127.0.0.1:5000/api/requests/pending', { headers: { 'Authorization': `Bearer ${token}` } });
+                const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/pending', { headers: { 'Authorization': `Bearer ${token}` } });
                 const data = await response.json();
                 if (response.ok) {
                   setPendingRequests(data.requests || []); 
@@ -357,7 +356,8 @@ function Dashboard() {
                       onClick={() => {
                         const lng = req.breakdownLocation.coordinates[0];
                         const lat = req.breakdownLocation.coordinates[1];
-                        window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
+                        // 👉 FIXED: Map link ab sahi khulega
+                        window.open(`https://maps.google.com/?q=${lat},${lng}`, '_blank');
                       }}
                     >
                       📍 Navigate to Customer
@@ -379,7 +379,7 @@ function Dashboard() {
       )}
 
       <hr className="divider" />
-     
+      
       {/* --- SERVICE HISTORY SECTION (For Both Customer & Mechanic) --- */}
       <div className="history-section">
         <h3 className="section-title">📜 Service History</h3>
@@ -402,7 +402,7 @@ function Dashboard() {
             ))}
           </ul>
         )}
-      </div>
+      </div> 
       <button className="logout-btn" onClick={handleLogout}>Logout</button>
     </div>
   );
