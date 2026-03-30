@@ -1,16 +1,53 @@
-# React + Vite
+# 🚗 RSA (Roadside Assistance) Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack, real-time Roadside Assistance web application built with the **MERN Stack** (MongoDB, Express.js, React, Node.js). This platform connects stranded drivers with nearby mechanics in real-time, offering services like towing, jump-starts, flat-tire fixes, and fuel delivery.
 
-Currently, two official plugins are available:
+**🚀 Live Demo:** [https://rsa-frontend-git-main-namanwagadres-projects.vercel.app](https://rsa-frontend-git-main-namanwagadres-projects.vercel.app)
+**⚙️ Backend API:** [https://rsa-backend-ze8f.onrender.com](https://rsa-backend-ze8f.onrender.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛡️ Role-Based Access Control (RBAC)
+Secure authentication flow that directs users to entirely separate dashboard experiences based on their registered role (`Customer` or `Mechanic`).
 
-## Expanding the ESLint configuration
+### 🚘 For Customers (Drivers)
+* **Garage Management:** Add and manage multiple vehicle details (Make, Model, Year, License Plate).
+* **One-Click SOS:** Request emergency assistance instantly using the browser's Geolocation API (HTML5) to fetch exact coordinates.
+* **Dynamic Pricing:** View estimated service costs upfront based on the selected emergency (e.g., Towing, Flat Tire, Breakdown).
+* **Live Status Tracking:** Track request status in real-time (Pending ➡️ Accepted ➡️ Completed).
+* **Service History:** View a complete log of past emergency requests and services.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🛠️ For Mechanics
+* **Real-time Job Board:** View a live feed of new/pending emergency requests in their area.
+* **Instant Acceptance:** Accept SOS requests with a single click.
+* **Smart Navigation:** Direct integration with **Google Maps** using the stranded driver's live GPS coordinates for quick navigation.
+* **Workflow Management:** Mark jobs as completed to become available for new requests.
+
+---
+
+## 💻 Tech Stack
+
+**Frontend:**
+* React.js (Functional Components, Hooks)
+* React Router DOM (Navigation & Protected Routes)
+* Pure CSS (Responsive & Modern UI)
+* Deployed on: **Vercel**
+
+**Backend:**
+* Node.js & Express.js (RESTful API architecture)
+* MongoDB Atlas (Cloud Database)
+* Mongoose (ODM & Schema Validation)
+* JSON Web Tokens (JWT) for secure Authentication
+* Deployed on: **Render**
+
+---
+
+## 🚀 Local Installation & Setup
+
+Want to run this project locally? Follow these steps:
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/Namanwagadre/rsa-frontend.git
