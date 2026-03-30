@@ -86,7 +86,7 @@ function Login() {
                 </p>
             )}
             
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit} autoComplete='off'>
               
               {/* Sirf Signup mode mein Name dikhega */}
               {!isLoginMode && (
@@ -120,6 +120,7 @@ function Login() {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 required
+                autoComplete='off'
               />
 
               <input 
@@ -129,6 +130,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete='new-password'
                />
 
                <button 
