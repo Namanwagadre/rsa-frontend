@@ -1,18 +1,24 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Aapki alag CSS file
+import { useState, useEffect } from 'react'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
+import './Login.css'; 
 
 function Login() {
     const navigate = useNavigate();
+    const location = useLocation(); 
     
-    // Toggle state
-    const [isLoginMode, setIsLoginMode] = useState(true); 
+    
+    const [isLoginMode, setIsLoginMode] = useState(location.pathname !== '/signup'); 
+
+    useEffect(() => {
+        setIsLoginMode(location.pathname !== '/signup');
+    }, [location.pathname]);
+
 
     // Form states
     const [name, setName] = useState(''); 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('customer'); // 👉 Naya state role ke liye
+    const [role, setRole] = useState('customer'); 
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
@@ -23,7 +29,6 @@ function Login() {
             ? 'https://rsa-backend-ze8f.onrender.com/api/auth/login'
             : 'https://rsa-backend-ze8f.onrender.com/api/auth/register'; 
 
-        // 👉 Signup mein 'role' bhi bhejenge
         const bodyData = isLoginMode 
             ? { phoneNumber, password } 
             : { name, phoneNumber, password, role };
@@ -88,7 +93,6 @@ function Login() {
             
             <form className="login-form" onSubmit={handleSubmit} autoComplete='off'>
               
-              {/* Sirf Signup mode mein Name dikhega */}
               {!isLoginMode && (
                   <input 
                       className='login-input'
@@ -100,7 +104,6 @@ function Login() {
                   />
               )}
 
-              {/* 👉 NAYA HISSA: Sirf Signup mode mein Role Dropdown dikhega */}
               {!isLoginMode && (
                   <select 
                       className='login-input select-role'
@@ -108,7 +111,7 @@ function Login() {
                       onChange={(e) => setRole(e.target.value)}
                       required={!isLoginMode}
                   >
-                      <option value="customer"> As a User(Driver)</option>
+                      <option value="customer">As a User (Driver)</option>
                       <option value="mechanic">As a Mechanic</option>
                   </select>
               )}

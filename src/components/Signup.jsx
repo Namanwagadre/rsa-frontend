@@ -28,7 +28,7 @@ const Signup = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert('🎉 Registration Successful! Ab aap aaraam se Login kar sakte hain.');
+        alert('🎉 Registration Successful! ');
         // Agar aapke paas react-router-dom hai, toh yahan se login page par bhej sakte hain
       } else {
         alert('❌ Error: ' + data.message);
