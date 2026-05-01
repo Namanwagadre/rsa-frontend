@@ -39,9 +39,6 @@ function Login() {
             });
 
             const data = await response.json();
-            
-            // 👉 YAHAN SE CHECK KAREIN BACKEND KYA BHEJ RAHA HAI
-            console.log("BACKEND KA DATA:", data); 
 
             if (response.ok) {
                 if (isLoginMode) {
@@ -49,14 +46,12 @@ function Login() {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('role', data.user.role); 
                     
-                    // 👉 NAYI LINES: Real Name aur Phone save kar rahe hain
-                    // Hum check kar rahe hain ki backend phoneNumber bhej raha hai ya phone
                     localStorage.setItem('name', data.user.name || 'Demo User'); 
                     localStorage.setItem('phone', data.user.phoneNumber || data.user.phone || 'No Phone'); 
 
                     setTimeout(()=>{ navigate('/dashboard'); }, 1000);
                 } else {
-                    setMessage('🎉 Signup Successful! Ab aap login kar sakte hain.');
+                    setMessage('🎉 Signup Successful! You can now login.');
                     setTimeout(() => { 
                         setIsLoginMode(true); 
                         setMessage(''); 
@@ -67,7 +62,7 @@ function Login() {
                 setMessage('❌ Error: ' + data.message); 
             }
         } catch (error) {
-            setMessage('🔌 Server down hai ya internet nahi chal raha.');
+            setMessage('🔌 Server error or no internet connection.');
         }
     };
 
@@ -93,7 +88,7 @@ function Login() {
             </div>
 
             {message && (
-                <p className={`message ${message.includes('Error') || message.includes('down') ? 'error' : 'success'}`}>
+                <p className={`message ${message.includes('Error') || message.includes('error') ? 'error' : 'success'}`}>
                     {message}
                 </p>
             )}
@@ -104,7 +99,7 @@ function Login() {
                   <input 
                       className='login-input'
                       type="text"
-                      placeholder="Aapka Naam"
+                      placeholder="Full Name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required={!isLoginMode}

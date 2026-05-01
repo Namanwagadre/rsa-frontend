@@ -35,7 +35,7 @@ const Signup = () => {
       }
     } catch (error) {
       console.error('Signup error:', error);
-      alert('Network error! Backend se connect nahi ho paya.');
+      alert('Network error! .');
     }
   };
 
