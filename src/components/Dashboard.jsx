@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // 👉 Link import kiya
 import './Dashboard.css';
 
 function Dashboard() {
@@ -30,7 +30,6 @@ function Dashboard() {
     const fetchVehicles = async () => {
       if (role === 'customer') { 
         try {
-          // 👉 FIXED: Localhost ko Live Render link se replace kiya
           const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/vehicles', {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` }
@@ -65,7 +64,7 @@ function Dashboard() {
     }
   }, [role, token]);
 
-  // Fetch History (For both Customer & Mechanic)
+  // Fetch History
   const fetchHistory = async () => {
     try {
       const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/history', {
@@ -78,7 +77,6 @@ function Dashboard() {
     }
   };
 
-  // Page khulte hi History load karein
   useEffect(() => {
     fetchHistory();
   }, [role, token]);
@@ -215,12 +213,22 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <h1>Welcome to RSA App 🚗</h1>
-      <h2>Your Role: <span className="role-text">{role}</span></h2>
+      
+      {/* 👉 NAYA TOP BAR HADD KIYA HAI YAHAN */}
+      <div className="dashboard-top-bar">
+        <div className="top-bar-titles">
+            <h1>Welcome to RSA App 🚗</h1>
+            <h2>Your Role: <span className="role-text">{role}</span></h2>
+        </div>
+        <Link to="/profile" className="profile-btn">
+            👤
+        </Link>
+      </div>
+
       {message && <p className="status-message">{message}</p>}
       <hr className="divider" />
 
-      {role === 'customer' && ( // 👉 FIXED
+      {role === 'customer' && ( 
         <>
           <div className="add-vehicle-section">
             <h3 className="section-title">➕ Add a New Vehicle</h3>
@@ -233,7 +241,6 @@ function Dashboard() {
             <button className="save-btn" onClick={handleAddVehicle}>Save Vehicle 🚗</button>
           </div>
 
-          {/* --- NAYA: CUSTOMER LIVE TRACKING BOX --- */}
           {customerActiveReq && (
             <div className="tracking-box">
               <h3 className="section-title">📍 Live SOS Status</h3>
@@ -268,7 +275,6 @@ function Dashboard() {
               onChange={(e) => {
                 const selectedProblem = e.target.value;
                 setProblem(selectedProblem);
-                // JADU: Problem ke hisaab se price set karo
                 if (selectedProblem === 'Towing') setEstimatedPrice('₹1000 - ₹1500 (Depends on distance)');
                 else if (selectedProblem === 'Flat Tire') setEstimatedPrice('₹200 - ₹300');
                 else if (selectedProblem === 'Battery Jump-start') setEstimatedPrice('₹300 - ₹500');
@@ -284,7 +290,6 @@ function Dashboard() {
               <option value="Breakdown Repair">Breakdown Repair</option>
             </select>
 
-            {/* PRICING DIKHANE WALA DABBA */}
             {problem && (
               <div className="pricing-box">
                 <strong>💰 Estimated Cost:</strong> {estimatedPrice}
@@ -356,7 +361,6 @@ function Dashboard() {
                       onClick={() => {
                         const lng = req.breakdownLocation.coordinates[0];
                         const lat = req.breakdownLocation.coordinates[1];
-                        // 👉 FIXED: Map link ab sahi khulega
                         window.open(`https://maps.google.com/?q=${lat},${lng}`, '_blank');
                       }}
                     >
@@ -380,7 +384,6 @@ function Dashboard() {
 
       <hr className="divider" />
       
-      {/* --- SERVICE HISTORY SECTION (For Both Customer & Mechanic) --- */}
       <div className="history-section">
         <h3 className="section-title">📜 Service History</h3>
         {history.length === 0 ? (

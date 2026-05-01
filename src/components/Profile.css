@@ -1,0 +1,213 @@
+.profile-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 2rem 1rem;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.back-link {
+    align-self: flex-start;
+    max-width: 450px;
+    margin: 0 auto 1rem auto;
+    width: 100%;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #16a34a;
+}
+
+.profile-card {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatar {
+    font-size: 3.5rem;
+    background-color: #dcfce7;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2);
+}
+
+.profile-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: #1f2937;
+    font-size: 1.5rem;
+}
+
+.role-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.role-badge.mechanic { background-color: #fef08a; color: #854d0e; }
+.role-badge.user { background-color: #e0e7ff; color: #3730a3; }
+
+.detail-item {
+    margin-bottom: 1.2rem;
+}
+
+.detail-item label, .status-section label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.detail-value {
+    margin: 0.3rem 0 0 0;
+    font-size: 1.1rem;
+    color: #111827;
+    font-weight: 500;
+}
+
+.status-section {
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    border: 1px solid #e5e7eb;
+}
+
+.status-toggle-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.status-indicator {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.status-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-available { background-color: #16a34a; color: white; }
+.btn-busy { background-color: #ef4444; color: white; }
+
+.logout-btn {
+    width: 100%;
+    margin-top: 2rem;
+    background-color: white;
+    color: #dc2626;
+    border: 2px solid #fca5a5;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #fef2f2;
+    border-color: #dc2626;
+}
+
+/* Inko apni Profile.css mein add ya replace kar lein */
+
+.profile-name {
+    margin: 0 0 0.5rem 0;
+    color: #111827;
+    font-size: 1.4rem;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #374151;
+}
+
+.edit-btn, .save-btn-small {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.edit-btn { color: #3b82f6; background-color: #eff6ff; }
+.edit-btn:hover { background-color: #dbeafe; }
+
+.save-btn-small { color: #16a34a; background-color: #dcfce7; }
+.save-btn-small:hover { background-color: #bbf7d0; }
+
+.edit-input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.edit-input:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot-online { background-color: #16a34a; box-shadow: 0 0 8px #16a34a; }
+.dot-offline { background-color: #dc2626; }

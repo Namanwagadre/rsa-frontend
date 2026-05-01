@@ -3,6 +3,7 @@ import LandingPage from './components/LandingPage'; // <-- Naya import
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Signup from './components/Signup';
+import Profile from './components/Profile';
 
 function App(){
   return (
@@ -15,8 +16,9 @@ function App(){
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Login />} />
 
-        {/* Agar URL mein '/dashboard' hai, toh Dashboard dikhao */}
+        
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
