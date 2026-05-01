@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // 👉 Link import kiya
+import { useNavigate, Link } from 'react-router-dom'; // Added Link import
 import './Dashboard.css';
 
 function Dashboard() {
@@ -8,7 +8,7 @@ function Dashboard() {
   const role = localStorage.getItem('role'); 
   const token = localStorage.getItem('token'); 
 
-  // States
+  // Component States
   const [problem, setProblem] = useState('');
   const [estimatedPrice, setEstimatedPrice] = useState(''); 
   const [vehicleId, setVehicleId] = useState(''); 
@@ -25,7 +25,7 @@ function Dashboard() {
   const [year, setYear] = useState('');
   const [licensePlate, setLicensePlate] = useState('');
 
-  // Fetch Vehicles
+  // Fetch registered vehicles for the customer
   useEffect(() => {
     const fetchVehicles = async () => {
       if (role === 'customer') { 
@@ -44,7 +44,7 @@ function Dashboard() {
     fetchVehicles();
   }, [role, token]);
 
-  // Status fetch karne ka function
+  // Function to fetch active request status for customer
   const fetchCustomerActiveReq = async () => {
     try {
       const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/customer-active', {
@@ -57,14 +57,14 @@ function Dashboard() {
     }
   };
 
-  // Page khulte hi fetch karein
+  // Fetch active request on component mount
   useEffect(() => {
     if (role === 'customer') { 
       fetchCustomerActiveReq();
     }
   }, [role, token]);
 
-  // Fetch History
+  // Fetch service history
   const fetchHistory = async () => {
     try {
       const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/history', {
@@ -81,7 +81,7 @@ function Dashboard() {
     fetchHistory();
   }, [role, token]);
 
-  // Fetch Active Requests (Mechanic)
+  // Fetch active requests for the mechanic
   const fetchActiveRequests = async () => {
     try {
       const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/my-accepted', {
@@ -100,10 +100,10 @@ function Dashboard() {
     }
   }, [role, token]);
 
-  // Add Vehicle
+  // Handle adding a new vehicle
   const handleAddVehicle = async () => {
     if (!make || !model || !year || !licensePlate) {
-      setMessage(' Please fill in all the vehicle details!');
+      setMessage('⚠️ Please fill in all the vehicle details!');
       return;
     }
     try {
@@ -118,21 +118,21 @@ function Dashboard() {
         setVehicles([...vehicles, data.vehicle]); 
         setMake(''); setModel(''); setYear(''); setLicensePlate('');
       } else {
-        setMessage(' Error: ' + data.message);
+        setMessage('❌ Error: ' + data.message);
       }
     } catch (error) {
-      setMessage(' Server Error: Could not save the vehicle.');
+      setMessage('🔌 Server Error: Could not save the vehicle.');
     }
   };
 
-  // Send SOS
+  // Handle sending SOS request
   const handleSOS = async () => {
     if (!problem || !vehicleId) {
-      setMessage(' Please select both a vehicle and an issue.');
+      setMessage('⚠️ Please select both a vehicle and an issue.');
       return;
     }
     if (!navigator.geolocation) {
-      setMessage(' Your browser does not support GPS location.');
+      setMessage('❌ Your browser does not support GPS location.');
       return;
     }
 
@@ -150,21 +150,21 @@ function Dashboard() {
         });
         const data = await response.json();
         if (response.ok) {
-          setMessage(' SOS Sent! Nearby mechanics have been alerted.');
+          setMessage('🚨 SOS Sent! Nearby mechanics have been alerted.');
           setProblem(''); setVehicleId(''); 
           fetchCustomerActiveReq();
         } else {
-          setMessage(' Error: ' + (data.error || data.message));
+          setMessage('❌ Error: ' + (data.error || data.message));
         }
       } catch (error) {
-        setMessage(' Server error or no internet connection.');
+        setMessage('🔌 Server error or no internet connection.');
       }
     }, () => {
-      setMessage(' Location access was denied.');
+      setMessage('❌ Location access was denied.');
     });
   };
 
-  // Accept Request
+  // Handle accepting a customer request
   const handleAcceptRequest = async (reqId) => {
     try {
       const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/accept', {
@@ -178,14 +178,14 @@ function Dashboard() {
         setPendingRequests(pendingRequests.filter(req => req._id !== reqId));
         fetchActiveRequests(); 
       } else {
-        setMessage(' Error: ' + data.message);
+        setMessage('❌ Error: ' + data.message);
       }
     } catch (error) {
-      setMessage(' Server Error: Could not accept the request.');
+      setMessage('🔌 Server Error: Could not accept the request.');
     }
   };
 
-  // Complete Request
+  // Handle marking a request as completed
   const handleCompleteRequest = async (reqId) => {
     try {
       const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/complete', {
@@ -198,13 +198,14 @@ function Dashboard() {
         setMessage('🎉 Great Job! The vehicle is fixed. You are now available for new requests.');
         setActiveRequests(activeRequests.filter(req => req._id !== reqId));
       } else {
-        setMessage(' Error while completing the request.');
+        setMessage('❌ Error while completing the request.');
       }
     } catch (error) {
-      setMessage(' Server Error');
+      setMessage('🔌 Server Error');
     }
   };
 
+  // Handle user logout
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
@@ -213,7 +214,6 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      
       
       <div className="dashboard-top-bar">
         <div className="top-bar-titles">

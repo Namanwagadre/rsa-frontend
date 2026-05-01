@@ -40,7 +40,7 @@ const LandingPage = () => {
 
       {/* Footer */}
       <footer className="landing-footer">
-        <p>© 2026 Roadside Assistance Platform. Developed by Naman Wagadre.</p>
+        <p>© 2026 Roadside Assistance Platform.  Developed by Naman Wagadre.</p>
       </footer>
       
     </div>
