@@ -12,11 +12,26 @@ function Profile() {
     const [name, setName] = useState('Demo User'); 
     const [phone, setPhone] = useState('+91 9876543210');
 
-    useEffect(() => {
+   useEffect(() => {
         const storedRole = localStorage.getItem('role');
+        const storedName = localStorage.getItem('name');   // 👉 Real Name
+        const storedPhone = localStorage.getItem('phone'); // 👉 Real Phone
+
         if (storedRole) {
             setRole(storedRole);
-            setName(storedRole === 'mechanic' ? 'Rahul (Mechanic)' : 'Ravi (Customer)');
+        }
+        
+        
+        if (storedName) {
+            setName(storedName);
+        } else {
+            setName(storedRole === 'mechanic' ? 'Mechanic User' : 'Customer User');
+        }
+
+        if (storedPhone) {
+            setPhone(storedPhone);
+        } else {
+            setPhone('Phone number not found');
         }
     }, []);
 

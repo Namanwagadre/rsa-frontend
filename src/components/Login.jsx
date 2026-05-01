@@ -6,13 +6,11 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation(); 
     
-    
     const [isLoginMode, setIsLoginMode] = useState(location.pathname !== '/signup'); 
 
     useEffect(() => {
         setIsLoginMode(location.pathname !== '/signup');
     }, [location.pathname]);
-
 
     // Form states
     const [name, setName] = useState(''); 
@@ -41,12 +39,21 @@ function Login() {
             });
 
             const data = await response.json();
+            
+            // 👉 YAHAN SE CHECK KAREIN BACKEND KYA BHEJ RAHA HAI
+            console.log("BACKEND KA DATA:", data); 
 
             if (response.ok) {
                 if (isLoginMode) {
                     setMessage('✅ Login Successful!');
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('role', data.user.role); 
+                    
+                    // 👉 NAYI LINES: Real Name aur Phone save kar rahe hain
+                    // Hum check kar rahe hain ki backend phoneNumber bhej raha hai ya phone
+                    localStorage.setItem('name', data.user.name || 'Demo User'); 
+                    localStorage.setItem('phone', data.user.phoneNumber || data.user.phone || 'No Phone'); 
+
                     setTimeout(()=>{ navigate('/dashboard'); }, 1000);
                 } else {
                     setMessage('🎉 Signup Successful! Ab aap login kar sakte hain.');

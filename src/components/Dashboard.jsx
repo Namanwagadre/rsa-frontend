@@ -214,7 +214,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       
-      {/* 👉 NAYA TOP BAR HADD KIYA HAI YAHAN */}
+      
       <div className="dashboard-top-bar">
         <div className="top-bar-titles">
             <h1>Welcome to RSA App 🚗</h1>
