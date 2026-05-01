@@ -1,53 +1,32 @@
-# 🚗 RSA (Roadside Assistance) Platform
+# Roadside Assistance (RSA) Platform - Frontend 🚗🛠️
 
-A full-stack, real-time Roadside Assistance web application built with the **MERN Stack** (MongoDB, Express.js, React, Node.js). This platform connects stranded drivers with nearby mechanics in real-time, offering services like towing, jump-starts, flat-tire fixes, and fuel delivery.
+Welcome to the frontend repository of the **Roadside Assistance (RSA) Platform**. This application is designed to connect stranded drivers with professional mechanics in real-time, providing reliable 24/7 emergency support.
 
-**🚀 Live Demo:** [https://rsa-frontend-git-main-namanwagadres-projects.vercel.app](https://rsa-frontend-git-main-namanwagadres-projects.vercel.app)
-**⚙️ Backend API:** [https://rsa-backend-ze8f.onrender.com](https://rsa-backend-ze8f.onrender.com)
+🔗 **Live Production Link:** [https://rsa-frontend.vercel.app](https://rsa-frontend.vercel.app)
 
----
+*(Note: The backend repository for this project can be found [Here](https://github.com/Namanwagadre/rsa-backend))*
 
-## ✨ Key Features
-
-### 🛡️ Role-Based Access Control (RBAC)
-Secure authentication flow that directs users to entirely separate dashboard experiences based on their registered role (`Customer` or `Mechanic`).
-
-### 🚘 For Customers (Drivers)
-* **Garage Management:** Add and manage multiple vehicle details (Make, Model, Year, License Plate).
-* **One-Click SOS:** Request emergency assistance instantly using the browser's Geolocation API (HTML5) to fetch exact coordinates.
-* **Dynamic Pricing:** View estimated service costs upfront based on the selected emergency (e.g., Towing, Flat Tire, Breakdown).
-* **Live Status Tracking:** Track request status in real-time (Pending ➡️ Accepted ➡️ Completed).
-* **Service History:** View a complete log of past emergency requests and services.
-
-### 🛠️ For Mechanics
-* **Real-time Job Board:** View a live feed of new/pending emergency requests in their area.
-* **Instant Acceptance:** Accept SOS requests with a single click.
-* **Smart Navigation:** Direct integration with **Google Maps** using the stranded driver's live GPS coordinates for quick navigation.
-* **Workflow Management:** Mark jobs as completed to become available for new requests.
-
----
+## 🌟 Key Features
+* **Modern Landing Page:** A clean, responsive, and intuitive entry point for users and mechanics.
+* **Role-Based Authentication:** Seamless Login and Sign-up flows toggled in a single intuitive UI for both Users (Drivers) and Mechanics.
+* **Real-time Status Updates:** Users can request help and track their mechanic's status.
+* **Mechanic Dashboard:** Dedicated dashboard for mechanics to view and accept incoming emergency requests.
 
 ## 💻 Tech Stack
+* **Framework:** React.js (Vite)
+* **Routing:** React Router DOM
+* **Styling:** Custom CSS (Responsive & Modern UI)
+* **Deployment:** Vercel
 
-**Frontend:**
-* React.js (Functional Components, Hooks)
-* React Router DOM (Navigation & Protected Routes)
-* Pure CSS (Responsive & Modern UI)
-* Deployed on: **Vercel**
+## 📸 Screenshots
+*(Naman bhai, yahan apne Landing page aur Login page ki ek achhi si screenshot add kar dena baad mein!)*
+`![Landing Page Screenshot](link_to_image)`
 
-**Backend:**
-* Node.js & Express.js (RESTful API architecture)
-* MongoDB Atlas (Cloud Database)
-* Mongoose (ODM & Schema Validation)
-* JSON Web Tokens (JWT) for secure Authentication
-* Deployed on: **Render**
+## 🚀 Run Locally
+To run this project on your local machine:
+1. Clone the repository: `git clone https://github.com/Namanwagadre/rsa-frontend.git`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
 
 ---
-
-## 🚀 Local Installation & Setup
-
-Want to run this project locally? Follow these steps:
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/Namanwagadre/rsa-frontend.git
+*Developed by **Naman Wagadre***
