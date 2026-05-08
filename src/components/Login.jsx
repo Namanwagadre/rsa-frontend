@@ -42,7 +42,7 @@ function Login() {
 
             if (response.ok) {
                 if (isLoginMode) {
-                    setMessage('✅ Login Successful!');
+                    setMessage(' Login Successful!');
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('role', data.user.role); 
                     
@@ -59,7 +59,7 @@ function Login() {
                     }, 2000);
                 }
             } else {
-                setMessage('❌ Error: ' + data.message); 
+                setMessage(' Error: ' + data.message); 
             }
         } catch (error) {
             setMessage('🔌 Server error or no internet connection.');

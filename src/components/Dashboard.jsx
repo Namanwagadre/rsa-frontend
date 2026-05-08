@@ -103,7 +103,7 @@ function Dashboard() {
   // Handle adding a new vehicle
   const handleAddVehicle = async () => {
     if (!make || !model || !year || !licensePlate) {
-      setMessage('⚠️ Please fill in all the vehicle details!');
+      setMessage(' Please fill in all the vehicle details!');
       return;
     }
     try {
@@ -114,11 +114,11 @@ function Dashboard() {
       });
       const data = await response.json();
       if (response.ok) {
-        setMessage('✅ Vehicle added successfully!');
+        setMessage(' Vehicle added successfully!');
         setVehicles([...vehicles, data.vehicle]); 
         setMake(''); setModel(''); setYear(''); setLicensePlate('');
       } else {
-        setMessage('❌ Error: ' + data.message);
+        setMessage(' Error: ' + data.message);
       }
     } catch (error) {
       setMessage('🔌 Server Error: Could not save the vehicle.');
@@ -128,15 +128,15 @@ function Dashboard() {
   // Handle sending SOS request
   const handleSOS = async () => {
     if (!problem || !vehicleId) {
-      setMessage('⚠️ Please select both a vehicle and an issue.');
+      setMessage(' Please select both a vehicle and an issue.');
       return;
     }
     if (!navigator.geolocation) {
-      setMessage('❌ Your browser does not support GPS location.');
+      setMessage(' Your browser does not support GPS location.');
       return;
     }
 
-    setMessage('⏳ Fetching your current location...');
+    setMessage(' Fetching your current location...');
 
     navigator.geolocation.getCurrentPosition(async (position) => {
       const lat = position.coords.latitude;
@@ -150,17 +150,17 @@ function Dashboard() {
         });
         const data = await response.json();
         if (response.ok) {
-          setMessage('🚨 SOS Sent! Nearby mechanics have been alerted.');
+          setMessage(' SOS Sent! Nearby mechanics have been alerted.');
           setProblem(''); setVehicleId(''); 
           fetchCustomerActiveReq();
         } else {
-          setMessage('❌ Error: ' + (data.error || data.message));
+          setMessage(' Error: ' + (data.error || data.message));
         }
       } catch (error) {
-        setMessage('🔌 Server error or no internet connection.');
+        setMessage(' Server error or no internet connection.');
       }
     }, () => {
-      setMessage('❌ Location access was denied.');
+      setMessage(' Location access was denied.');
     });
   };
 
@@ -174,11 +174,11 @@ function Dashboard() {
       });
       const data = await response.json();
       if (response.ok) {
-        setMessage('✅ Request Accepted! You can now view the customer location.');
+        setMessage(' Request Accepted! You can now view the customer location.');
         setPendingRequests(pendingRequests.filter(req => req._id !== reqId));
         fetchActiveRequests(); 
       } else {
-        setMessage('❌ Error: ' + data.message);
+        setMessage(' Error: ' + data.message);
       }
     } catch (error) {
       setMessage('🔌 Server Error: Could not accept the request.');
@@ -198,7 +198,7 @@ function Dashboard() {
         setMessage('🎉 Great Job! The vehicle is fixed. You are now available for new requests.');
         setActiveRequests(activeRequests.filter(req => req._id !== reqId));
       } else {
-        setMessage('❌ Error while completing the request.');
+        setMessage(' Error while completing the request.');
       }
     } catch (error) {
       setMessage('🔌 Server Error');
@@ -217,7 +217,7 @@ function Dashboard() {
       
       <div className="dashboard-top-bar">
         <div className="top-bar-titles">
-            <h1>Welcome to RSA App 🚗</h1>
+            <h1>Welcome to RSA App </h1>
             <h2>Your Role: <span className="role-text">{role}</span></h2>
         </div>
         <Link to="/profile" className="profile-btn">
@@ -231,7 +231,7 @@ function Dashboard() {
       {role === 'customer' && ( 
         <>
           <div className="add-vehicle-section">
-            <h3 className="section-title">➕ Add a New Vehicle</h3>
+            <h3 className="section-title"> Add a New Vehicle</h3>
             <div className="input-group">
               <input type="text" placeholder="Make (e.g. Tata)" className="problem-input half-width" value={make} onChange={(e) => setMake(e.target.value)} />
               <input type="text" placeholder="Model (e.g. Nexon)" className="problem-input half-width" value={model} onChange={(e) => setModel(e.target.value)} />
@@ -243,28 +243,28 @@ function Dashboard() {
 
           {customerActiveReq && (
             <div className="tracking-box">
-              <h3 className="section-title">📍 Live SOS Status</h3>
+              <h3 className="section-title"> Live SOS Status</h3>
               
               {customerActiveReq.status === 'pending' ? (
                 <div className="status-pending-text">
-                  ⏳ Searching for nearby mechanics...
+                   Searching for nearby mechanics...
                 </div>
               ) : (
                 <div className="status-accepted-text">
-                  🚗 Mechanic is on the way! (ETA: 10-15 mins)
+                   Mechanic is on the way! (ETA: 10-15 mins)
                 </div>
               )}
               
               <p className="tracking-note">Please stay safely inside or near your vehicle.</p>
               
               <button className="refresh-btn" onClick={fetchCustomerActiveReq}>
-                🔄 Refresh Status
+                 Refresh Status
               </button>
             </div>
           )}
 
           <div className="customer-section">
-            <h3 className="section-title">🚨 Need Emergency Assistance?</h3>
+            <h3 className="section-title"> Need Emergency Assistance?</h3>
             <select className="problem-input" value={vehicleId} onChange={(e) => setVehicleId(e.target.value)}>
               <option value="" disabled>Select Your Vehicle...</option>
               {vehicles.map((car) => <option key={car._id} value={car._id}>{car.make} {car.model} ({car.licensePlate})</option>)}
@@ -298,7 +298,7 @@ function Dashboard() {
                 </span>
               </div>
             )}
-            <button className="sos-btn full-width" onClick={handleSOS}>🚨 GET LOCATION & SEND SOS</button>
+            <button className="sos-btn full-width" onClick={handleSOS}> GET LOCATION & SEND SOS</button>
           </div>
         </>
       )}
@@ -307,19 +307,19 @@ function Dashboard() {
         <div className="mechanic-section">
           
           <div className="pending-box">
-            <h3 className="section-title">🔔 New Requests (Pending)</h3>
+            <h3 className="section-title"> New Requests (Pending)</h3>
             <button className="check-requests-btn full-width" onClick={async () => {
-              setMessage('⏳ Checking for new requests...');
+              setMessage(' Checking for new requests...');
               try {
                 const response = await fetch('https://rsa-backend-ze8f.onrender.com/api/requests/pending', { headers: { 'Authorization': `Bearer ${token}` } });
                 const data = await response.json();
                 if (response.ok) {
                   setPendingRequests(data.requests || []); 
-                  setMessage(`✅ Found ${data.requests.length} new request(s)!`);
+                  setMessage(` Found ${data.requests.length} new request(s)!`);
                 }
-              } catch (error) { setMessage('❌ Server Error'); }
+              } catch (error) { setMessage(' Server Error'); }
             }}>
-              🔄 Refresh Requests
+               Refresh Requests
             </button>
 
             <div className="requests-container">
@@ -329,11 +329,11 @@ function Dashboard() {
                 pendingRequests.map((req) => (
                   <div key={req._id} className="request-card new-card">
                     <div className="req-header">
-                      <h4 className="text-red">🚨 {req.serviceType}</h4>
+                      <h4 className="text-red"> {req.serviceType}</h4>
                       <span className="time-badge red-badge">New</span>
                     </div>
                     <p><strong>Vehicle:</strong> {req.vehicleId ? `${req.vehicleId.make} ${req.vehicleId.model} (${req.vehicleId.licensePlate})` : 'Details Missing'}</p>
-                    <button className="accept-btn" onClick={() => handleAcceptRequest(req._id)}>✅ Accept Request</button>
+                    <button className="accept-btn" onClick={() => handleAcceptRequest(req._id)}> Accept Request</button>
                   </div>
                 ))
               )}
@@ -343,7 +343,7 @@ function Dashboard() {
           <hr className="divider" />
 
           <div className="active-box">
-            <h3 className="section-title">🚗 My Active Requests (In Progress)</h3>
+            <h3 className="section-title"> My Active Requests (In Progress)</h3>
             <div className="requests-container">
               {activeRequests.length === 0 ? (
                 <p className="empty-text">You have no active requests right now.</p>
@@ -351,7 +351,7 @@ function Dashboard() {
                 activeRequests.map((req) => (
                   <div key={req._id} className="request-card active-card">
                     <div className="req-header">
-                      <h4 className="text-green">🔧 {req.serviceType}</h4>
+                      <h4 className="text-green"> {req.serviceType}</h4>
                       <span className="time-badge green-badge">Accepted</span>
                     </div>
                     <p><strong>Vehicle:</strong> {req.vehicleId ? `${req.vehicleId.make} ${req.vehicleId.model} (${req.vehicleId.licensePlate})` : 'Details Missing'}</p>
@@ -364,14 +364,14 @@ function Dashboard() {
                         window.open(`https://maps.google.com/?q=${lat},${lng}`, '_blank');
                       }}
                     >
-                      📍 Navigate to Customer
+                       Navigate to Customer
                     </button>
 
                     <button 
                       className="save-btn full-width mt-10" 
                       onClick={() => handleCompleteRequest(req._id)}
                     >
-                      ✅ Mark as Completed
+                       Mark as Completed
                     </button>
                   </div>
                 ))
@@ -385,7 +385,7 @@ function Dashboard() {
       <hr className="divider" />
       
       <div className="history-section">
-        <h3 className="section-title">📜 Service History</h3>
+        <h3 className="section-title"> Service History</h3>
         {history.length === 0 ? (
           <p className="empty-text">No past records found.</p>
         ) : (
@@ -399,7 +399,7 @@ function Dashboard() {
                   </span>
                 </div>
                 <div className="status-completed">
-                  ✅ Completed
+                   Completed
                 </div>
               </li>
             ))}

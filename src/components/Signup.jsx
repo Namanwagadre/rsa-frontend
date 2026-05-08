@@ -28,10 +28,10 @@ const Signup = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert('🎉 Registration Successful! ');
+        alert(' Registration Successful! ');
         // Agar aapke paas react-router-dom hai, toh yahan se login page par bhej sakte hain
       } else {
-        alert('❌ Error: ' + data.message);
+        alert(' Error: ' + data.message);
       }
     } catch (error) {
       console.error('Signup error:', error);
@@ -41,7 +41,7 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <h2 className="signup-title">Naya Account Banayein 🚀</h2>
+      <h2 className="signup-title">Naya Account Banayein </h2>
       
       <form className="signup-form" onSubmit={handleSubmit}>
         <input 

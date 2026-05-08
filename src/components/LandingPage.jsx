@@ -30,10 +30,10 @@ const LandingPage = () => {
         
         <div className="hero-buttons">
           <Link to="/login" className="btn-primary">
-            Get Emergency Help 🚨
+            Get Emergency Help 
           </Link>
           <Link to="/signup" className="btn-secondary">
-            Join as Mechanic 👨‍🔧
+            Join as Mechanic 
           </Link>
         </div>
       </main>

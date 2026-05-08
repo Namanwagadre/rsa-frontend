@@ -112,7 +112,7 @@ function Profile() {
                 </div>
 
                 <button className="logout-btn" onClick={handleLogout}>
-                    🚪 Logout 
+                     Logout 
                 </button>
             </div>
         </div>
